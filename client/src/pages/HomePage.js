@@ -10,12 +10,12 @@ function HomePage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(movieActions.getAll());
+    dispatch(movieActions.getAll);
   }, [dispatch]);
 
   return (
     <div>
-      <h1>Home Page</h1>
+      <h1>IMDB Home Page!</h1>
     </div>
   );
 }

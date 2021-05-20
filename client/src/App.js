@@ -9,7 +9,6 @@ import { ProtectedRoute } from "./components";
 function App() {
   return (
     <div className="App">
-      <h1>IMDB Clone Incoming!</h1>
       <Switch>
         <Route exact path={`/login`} component={AuthPage} />
         <ProtectedRoute exact path={"/"} component={HomePage} />
