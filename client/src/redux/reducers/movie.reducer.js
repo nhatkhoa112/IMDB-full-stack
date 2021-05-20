@@ -6,7 +6,8 @@ const initialState = {
 };
 
 const movieReducer = (state = initialState, action) => {
-  const { type, payload } = action;
+  // const { type, payload } = action;
+  const { type } = action;
 
   switch (type) {
     case types.FETCH_START:

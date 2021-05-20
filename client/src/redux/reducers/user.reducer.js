@@ -6,11 +6,12 @@ const initialState = {
   id: null,
   email: [],
   password: "",
-  isAuthenticated: true,
+  isAuthenticated: !!token,
 };
 
 const userReducer = (state = initialState, action) => {
-  const { type, payload } = action;
+  // const { type, payload } = action;
+  const { type } = action;
 
   switch (type) {
     case types.REGISTER_REQUEST:
