@@ -24,13 +24,26 @@ const login = (user) => async (dispatch) => {
   }
 };
 
+const update = (id, user) => async (dispatch) => {
+  try {
+    dispatch({ type: types.UPDATE_REQUEST });
+    const { data } = await api.patch(`/users/${id}`, user);
+    console.log(data);
+  } catch (error) {
+    dispatch({ type: types.UPDATE_FAILURE });
+    console.log({ error });
+  }
+};
+
 const signOut = () => async (dispatch) => {
-  dispatch({type: types.SIGN_OUT});
+  dispatch({ type: types.SIGN_OUT });
 };
 
 const authActions = {
   register,
   login,
+  signOut,
+  update,
 };
 
 export { authActions };

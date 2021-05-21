@@ -16,7 +16,7 @@ userController.create = catchAsync(async (req, res, next) => {
 
     res.status(201).json({
       success: true,
-      data: newUser,
+      data: user,
       token: accessToken,
       message: `User ${user.name} created `,
     });
@@ -57,7 +57,34 @@ userController.login = catchAsync(async (req, res, next) => {
 
 userController.list = catchAsync(async (req, res, next) => {});
 
-userController.update = catchAsync(async (req, res, next) => {});
+userController.update = catchAsync(async (req, res, next) => {
+  const userId = req.userId;
+  const userIdParams = req.params.id;
+  if (userId === userIdParams) {
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { ...req.body },
+      { new: true }
+    );
+    console.log(user);
+    if (!user)
+      return res.status(400).json({
+        success: false,
+
+        error: 'User not found!',
+      });
+    return res.status(200).json({
+      success: true,
+      data: user,
+      message: 'User updated successfully!',
+    });
+  } else {
+    user.save();
+    return res.status(401).json({
+      message: 'The user is not yours',
+    });
+  }
+});
 
 userController.delete = catchAsync(async (req, res, next) => {});
 

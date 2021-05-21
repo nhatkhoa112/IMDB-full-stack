@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
 const loginRequired = (req, res, next) => {
@@ -8,23 +8,23 @@ const loginRequired = (req, res, next) => {
       return res.status(401).json({
         success: false,
 
-        error: 'Token not found',
+        error: "Token not found",
       });
 
-    const token = tokenString.replace('Bearer ', '');
+    const token = tokenString.replace("Bearer ", "");
     jwt.verify(token, JWT_SECRET_KEY, (err, payload) => {
       if (err) {
-        if (err.name === 'TokenExpiredError') {
+        if (err.name === "TokenExpiredError") {
           return res.status(401).json({
             success: false,
 
-            error: 'Token expired.',
+            error: "Token expired.",
           });
         } else {
           return res.status(401).json({
             success: false,
 
-            error: 'Token is invalid',
+            error: "Token is invalid",
           });
         }
       }
