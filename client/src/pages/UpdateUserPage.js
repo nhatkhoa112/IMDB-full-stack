@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 // import { Redirect } from 'react-router-dom';
 
 import {
@@ -19,7 +19,6 @@ function UpdateUserPage() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.user);
-  currentUser.password = '';
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -33,11 +32,14 @@ function UpdateUserPage() {
   useEffect(() => {
     setUser({
       name: currentUser.name,
-      password: currentUser.password,
       email: currentUser.email,
       avatarUrl: currentUser.avatarUrl,
     });
   }, [currentUser]);
+
+  if (currentUser.isRedirect) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <RegisterContainer>

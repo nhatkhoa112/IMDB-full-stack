@@ -8,10 +8,12 @@ const initialState = {
   name: currentUser ? currentUser.name : '',
   email: currentUser ? currentUser.email : '',
   avatarUrl: currentUser ? currentUser.avatarUrl : '',
-  password: currentUser ? currentUser.password : '',
+  // password: currentUser ? currentUser.password : '',
   isAuthenticated: !!token,
   isRedirect: false,
 };
+
+
 
 const userReducer = (state = initialState, action) => {
   const { type, payload } = action;
@@ -50,12 +52,14 @@ const userReducer = (state = initialState, action) => {
     case types.UPDATE_REQUEST:
       return state;
     case types.UPDATE_SUCCESS:
+      localStorage.removeItem('imdbUser');
+      localStorage.setItem('imdbUser', JSON.stringify(payload.data));
       return {
         ...state,
         name: payload.data.name,
         email: payload.data.email,
         avatarUrl: payload.data.avatarUrl,
-        password: payload.data.password,
+        // password: payload.data.password,
         isRedirect: true,
       };
     case types.UPDATE_FAILURE:
@@ -68,8 +72,7 @@ const userReducer = (state = initialState, action) => {
         name: payload.data.name,
         email: payload.data.email,
         avatarUrl: payload.data.avatarUrl,
-        password: payload.data.password,
-        isRedirect: true,
+      
       };
     case types.DESTROY_FAILURE:
       return state;

@@ -28,7 +28,7 @@ const update = (id, user) => async (dispatch) => {
   try {
     dispatch({ type: types.UPDATE_REQUEST });
     const { data } = await api.patch(`/users/${id}`, user);
-    console.log(data);
+    dispatch({ type: types.UPDATE_SUCCESS, payload: data})
   } catch (error) {
     dispatch({ type: types.UPDATE_FAILURE });
     console.log({ error });
