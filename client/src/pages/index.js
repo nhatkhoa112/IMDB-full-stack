@@ -1,3 +1,4 @@
-export * from "./HomePage";
-export * from "./AuthPage";
-export * from "./FourOhFourPage";
+export * from './HomePage';
+export * from './RegisterPage';
+export * from './LoginPage';
+export * from './FourOhFourPage';

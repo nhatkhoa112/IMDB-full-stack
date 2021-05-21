@@ -1,17 +1,18 @@
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch } from 'react-router-dom';
 
-import "./App.css";
+import './App.css';
 
-import { HomePage, AuthPage, FourOhFourPage } from "./pages";
+import { HomePage, RegisterPage, FourOhFourPage, LoginPage } from './pages';
 
-import { ProtectedRoute } from "./components";
+import { ProtectedRoute } from './components';
 
 function App() {
   return (
     <div className="App">
       <Switch>
-        <Route exact path={`/login`} component={AuthPage} />
-        <ProtectedRoute exact path={"/"} component={HomePage} />
+        <Route exact path={`/login`} component={LoginPage} />
+        <Route exact path={`/register`} component={RegisterPage} />
+        <ProtectedRoute exact path={'/'} component={HomePage} />
         <Route path={`/*`} component={FourOhFourPage} />
       </Switch>
     </div>
