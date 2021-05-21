@@ -13,8 +13,6 @@ const initialState = {
   isRedirect: false,
 };
 
-
-
 const userReducer = (state = initialState, action) => {
   const { type, payload } = action;
   // const { type } = action;
@@ -72,7 +70,6 @@ const userReducer = (state = initialState, action) => {
         name: payload.data.name,
         email: payload.data.email,
         avatarUrl: payload.data.avatarUrl,
-      
       };
     case types.DESTROY_FAILURE:
       return state;

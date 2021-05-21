@@ -41,6 +41,87 @@ header .nav-links {
   align-items: center;
 }
 
+header form {
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header form .user{
+    width: 180px;
+    height: 60px;
+    background: rgba(204, 204, 204, 0.521);
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+header form .user img{
+    border-radius: 60px;
+    flex: 1;
+
+}
+
+header form .user .content{
+    padding: 0 10px;
+    flex: 2;
+    display: flex;
+    flex-direction: space-between;
+    align-items: center;
+    color: var(--white)
+}
+
+header form .user .content .username{
+    flex: 2;
+    overflow: hidden;
+    overflow-x: auto;
+}
+
+header form .user .content .moreBtn{
+    flex: 1;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+header form .user .content .moreBtn i{
+    font-size: 1rem;
+}
+
+header form .user .content .moreBtn:hover{
+    background: #ccc;
+}
+
+button#dropdown-basic{
+    border: none !important;
+    background: transparent !important;
+    outline: none !important;
+}
+
+.dropdown-menu.show{
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-around !important;
+    align-items: flex-start !important;
+    padding: 0 20px;
+}
+
+.dropdown-menu.show button{ 
+    margin: 3px;
+    border:none;
+    background: transparent;
+    color: 1rem;
+}
+
+.dropdown-menu.show a{
+    color: black;
+    padding:  0 9px;
+    font-size: 1rem;
+}
+
 
 
 header .nav-links li {
@@ -51,20 +132,30 @@ header .nav-links li {
   align-items: center;
 }
 
-header .nav-links li a{
+
+
+
+header .nav-links li .home{
+    color: var(--secondary);
+    transition: all 0.5s ease-in-out
 }
 
-header .nav-links li:last-child {
-  margin-right: 0;
+header .nav-links li .home:hover{
+    color: rgb(82, 199, 82);
+    transform: scale(1.2)
 }
+
+
 
 header input[type="text"]{
     padding: 0 20px;
-    height: 36px;
+    height: 50px;
     border: none;
     width: 300px;
     border-radius: 5px;
     margin-right: 10px;
+    outline: none;
+
 }
 
 header input::placeholder{

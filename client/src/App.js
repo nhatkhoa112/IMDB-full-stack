@@ -1,4 +1,5 @@
 import { Route, Switch } from 'react-router-dom';
+import { useState } from 'react';
 
 import './App.css';
 import Navbar from './components/Navbar';
@@ -14,9 +15,10 @@ import {
 import { ProtectedRoute } from './components';
 
 function App() {
+  const [query, setQuery] = useState('');
   return (
     <div className="App">
-      <Navbar />
+      <Navbar query={query} setQuery={setQuery} />
       <Switch>
         <Route exact path={`/login`} component={LoginPage} />
         <Route exact path={`/register`} component={RegisterPage} />

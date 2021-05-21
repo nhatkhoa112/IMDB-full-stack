@@ -15,7 +15,6 @@ function HomePage() {
   return (
     <div>
       <h1>IMDB Home Page!</h1>
-      <Link to={`/edit/${currentUser.id}`}>Edit</Link>
     </div>
   );
 }
