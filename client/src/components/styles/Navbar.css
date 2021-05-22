@@ -1,183 +1,121 @@
-:root {
-  --primary: #032541 !important;
-  --secondary: #21d07a !important;
-  --white: #fff !important;
+.navbar>.container, .navbar>.container-fluid, .navbar>.container-lg, .navbar>.container-md, .navbar>.container-sm, .navbar>.container-xl, .navbar>.container-xxl{
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items:center !important; 
+    height: 100% !important;
 }
 
-/* Header Styles */
-header {
-  background-color: var(--primary);
+div#navbarScroll{
+    justify-content: flex-end;
 }
 
-header .inner-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
+
+
+.navbar{
+    height: 80px !important;
+    
 }
 
-header a {
-  color: var(--white);
-  font-size: 1.25rem;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-header a:hover {
-  opacity: 0.7;
-}
-
-header .brand a {
-  font-weight: 700;
-  font-size: 1.5rem;
-}
-
-header .nav-links {
-  width: 92%;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  display: flex;
-  align-items: center;
-}
-
-header form {
-    width: 40%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-header form .user{
-    width: 180px;
-    height: 60px;
-    background: rgba(204, 204, 204, 0.521);
+.user-form{
+    height: 50px;
+    width: 150px;
+    /* border: 1px solid white; */
     border-radius: 50px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between
 }
 
-header form .user img{
-    border-radius: 60px;
-    flex: 1;
 
-}
-
-header form .user .content{
-    padding: 0 10px;
-    flex: 2;
+.user-form .content{
+    flex: 4;
+    display: block;
+    color: white;
     display: flex;
-    flex-direction: space-between;
     align-items: center;
-    color: var(--white)
-}
-
-header form .user .content .username{
-    flex: 2;
-    overflow: hidden;
+    margin-left: 20px;
+    overflow:hidden;
     overflow-x: auto;
 }
-
-header form .user .content .moreBtn{
+    
+.user-form img{
     flex: 1;
-    height: 30px;
     border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-header form .user .content .moreBtn i{
-    font-size: 1rem;
 }
 
-header form .user .content .moreBtn:hover{
-    background: #ccc;
+.dropdown{
+    background-color: transparent !important  ;
+    margin-right: 12px;
 }
-
-button#dropdown-basic{
+.btn-primary{
+    background-color: transparent !important  ;
     border: none !important;
-    background: transparent !important;
-    outline: none !important;
+    display: flex !important;
+    align-items: center;
+    height: 50px !important;
 }
 
 .dropdown-menu.show{
     display: flex !important;
     flex-direction: column !important;
-    justify-content: space-around !important;
-    align-items: flex-start !important;
-    padding: 0 20px;
+    padding: 10px 20px;
+    background: white !important;
 }
 
-.dropdown-menu.show button{ 
-    margin: 3px;
-    border:none;
+.dropdown-menu.show button{
+    text-align: left !important;
+    border: none;
     background: transparent;
-    color: 1rem;
+    padding: 0;
+    transition: all 0.5s ease-in-out;
+
 }
 
 .dropdown-menu.show a{
-    color: black;
-    padding:  0 9px;
-    font-size: 1rem;
+    color: black ;
+    text-decoration: none;
+    transition: all 0.5s ease-in-out;
 }
 
-
-
-header .nav-links li {
-  width: 100%;
-  margin-right: 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.dropdown-menu.show button:hover{
+    color: #ccc;
 }
 
-
-
-
-header .nav-links li .home{
-    color: var(--secondary);
-    transition: all 0.5s ease-in-out
+.dropdown-menu.show a:hover{
+    color: #ccc;
 }
 
-header .nav-links li .home:hover{
-    color: rgb(82, 199, 82);
-    transform: scale(1.2)
+.navbar-collapse.show{
+    background: black;
+    padding: 20px;
 }
 
+@media screen and (max-width:991px){
+    form{
+        flex-direction: column;
+    }
 
+    .user-form{
+        width: 200px;
+        display: flex;
+        flex-direction: space-between;
+    }
 
-header input[type="text"]{
-    padding: 0 20px;
-    height: 50px;
-    border: none;
-    width: 300px;
-    border-radius: 5px;
-    margin-right: 10px;
-    outline: none;
+    .user-form img{
+        flex: 1;
+    }
 
-}
+    .user-form .content{
+        flex: 4;
+        display: block;
+        color: white;
+        display: flex;
+        align-items: center;
+        margin-left: 20px;
+    }
+    
 
-header input::placeholder{
-    margin-left: 50px;
-}
+    .dropdown-toggle{
+        padding: 0 !important;
+    }
 
-header input[type="submit"] {
-  padding: 10px 15px;
-  background-color: var(--secondary) !important;
-  color: var(--primary) !important;
-  border-radius: 5px;
-  text-transform: uppercase;
-  font-weight: 700;
-  display: inline-block;
-  border: none;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  line-height: 1.1;
-}
-
-header input[type="submit"]:hover {
-  background-color: #1aa762 !important;
-  opacity: 1;
-  cursor: pointer;
-}
+}   

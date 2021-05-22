@@ -22,7 +22,7 @@ function App() {
       <Switch>
         <Route exact path={`/login`} component={LoginPage} />
         <Route exact path={`/register`} component={RegisterPage} />
-        <Route exact path={`/edit/:id`} component={UpdateUserPage} />
+        <ProtectedRoute exact path={`/edit/:id`} component={UpdateUserPage} />
         <ProtectedRoute exact path={'/'} component={HomePage} />
         <Route path={`/*`} component={FourOhFourPage} />
       </Switch>
