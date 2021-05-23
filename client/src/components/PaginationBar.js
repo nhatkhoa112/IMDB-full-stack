@@ -1,23 +1,32 @@
 import React from 'react';
 import { Pagination } from 'react-bootstrap';
+import { movieActions } from '../redux/actions';
+import { useDispatch } from 'react-redux';
 
-const PaginationBar = ({ pageNum, setPageNum, totalPageNum }) => {
+const PaginationBar = ({ pageNum, setPageNum, totalPage, perPage }) => {
+  const dispatch = useDispatch();
+
   const handleClickOnFirst = () => {
     setPageNum(1);
+    dispatch(movieActions.getAll(pageNum, perPage));
   };
   const handleClickOnPrev = () => {
     if (pageNum > 1) setPageNum((num) => num - 1);
+    dispatch(movieActions.getAll(pageNum, perPage));
   };
 
   const handleClickOnLast = () => {
-    setPageNum(totalPageNum);
+    setPageNum(totalPage);
+    dispatch(movieActions.getAll(pageNum, perPage));
   };
   const handleClickOnNext = () => {
-    if (pageNum < totalPageNum) setPageNum((num) => num + 1);
+    if (pageNum < totalPage) setPageNum((num) => num + 1);
+    dispatch(movieActions.getAll(pageNum, perPage));
   };
 
   const handleClickOnPage = (page) => {
     setPageNum(page);
+    dispatch(movieActions.getAll(pageNum, perPage));
   };
   return (
     <Pagination className="mt-3 justify-content-center">
@@ -31,25 +40,25 @@ const PaginationBar = ({ pageNum, setPageNum, totalPageNum }) => {
       </Pagination.Item>
       {pageNum > 2 && <Pagination.Ellipsis />}
 
-      {pageNum > 1 && pageNum < totalPageNum && (
+      {pageNum > 1 && pageNum < totalPage && (
         <Pagination.Item active>{pageNum}</Pagination.Item>
       )}
 
-      {pageNum < totalPageNum - 1 && <Pagination.Ellipsis />}
-      {totalPageNum > 1 && (
+      {pageNum < totalPage - 1 && <Pagination.Ellipsis />}
+      {totalPage > 1 && (
         <Pagination.Item
-          active={pageNum === totalPageNum}
-          onClick={() => handleClickOnPage(totalPageNum)}
+          active={pageNum === totalPage}
+          onClick={() => handleClickOnPage(totalPage)}
         >
-          {totalPageNum}
+          {totalPage}
         </Pagination.Item>
       )}
       <Pagination.Next
-        disabled={pageNum === totalPageNum}
+        disabled={pageNum === totalPage}
         onClick={handleClickOnNext}
       />
       <Pagination.Last
-        disabled={pageNum === totalPageNum}
+        disabled={pageNum === totalPage}
         onClick={handleClickOnLast}
       />
     </Pagination>

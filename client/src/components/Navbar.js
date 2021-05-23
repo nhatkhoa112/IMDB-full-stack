@@ -3,11 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
   Navbar,
-  NavDropdown,
   Nav,
   Form,
   FormControl,
-  Button,
   Container,
   Dropdown,
 } from 'react-bootstrap';
@@ -30,25 +28,43 @@ const NavigationBar = ({ query, setQuery }) => {
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Form className="d-flex">
-            <Dropdown>
-              <Dropdown.Toggle id="dropdown-basic">
-                <div className="user-form">
-                  <img
-                    src={user.avatarUrl}
-                    alt="avatar"
-                    style={{ width: '50px', height: '50px' }}
-                  />
-                  <div className="content"> {user.name} </div>
-                </div>
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <button onClick={() => dispatch(authActions.signOut())}>
-                  Sign out
-                </button>
-                <Link to={`/edit/${user.id}`}>Edit</Link>
-                <button>Delete</button>
-              </Dropdown.Menu>
-            </Dropdown>
+            {user.id ? (
+              <Dropdown>
+                <Dropdown.Toggle id="dropdown-basic2">
+                  Movie actions
+                </Dropdown.Toggle>
+                <Dropdown.Menu id="movies">
+                  <Link to={`/create`}>Create new movie</Link>
+                  <button>Sort movies on avg_votes</button>
+                  <button>Sort movies on votes</button>
+                </Dropdown.Menu>
+              </Dropdown>
+            ) : (
+              ''
+            )}
+            {user.id ? (
+              <Dropdown>
+                <Dropdown.Toggle id="dropdown-basic">
+                  <div className="user-form">
+                    <img
+                      src={user.avatarUrl}
+                      alt="avatar"
+                      style={{ width: '50px', height: '50px' }}
+                    />
+                    <div className="content"> {user.name} </div>
+                  </div>
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <button onClick={() => dispatch(authActions.signOut())}>
+                    Sign out
+                  </button>
+                  <Link to={`/edit/${user.id}`}>Edit</Link>
+                  <button>Delete</button>
+                </Dropdown.Menu>
+              </Dropdown>
+            ) : (
+              ''
+            )}
 
             <FormControl
               value={query}
@@ -58,7 +74,6 @@ const NavigationBar = ({ query, setQuery }) => {
               className="mr-2"
               aria-label="Search"
             />
-            {/* <Button variant="outline-success">Search</Button> */}
           </Form>
         </Navbar.Collapse>
       </Container>

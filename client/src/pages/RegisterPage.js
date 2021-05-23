@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
@@ -11,6 +10,7 @@ import {
   FormLabel,
   FormControl,
   FormText,
+  Button,
 } from './elements/RegisterElements';
 import { authActions } from '../redux/actions';
 
@@ -79,7 +79,7 @@ function RegisterPage() {
             />
           </FormGroup>
 
-          <Button variant="primary" type="submit" onClick={handleSubmit}>
+          <Button type="submit" onClick={handleSubmit}>
             Submit
           </Button>
         </FormRegister>

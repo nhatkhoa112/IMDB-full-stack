@@ -8,16 +8,27 @@ const Movie = require('../models/Movie');
 
 const movieController = {};
 
-movieController.create = catchAsync(async (req, res, next) => {});
+movieController.create = catchAsync(async (req, res, next) => {
+  try {
+    const newMovie = req.body;
+    const movie = await new Movie(newMovie);
+    await movie.save();
+    sendResponse(res, 201, true, { movie }, null, 'Here are your moviessss');
+  } catch (error) {
+    res.status(400).json({
+      success: false,
 
-// GET http://localhost:5000/api/movies?sort_type=votes&order_by=asc
-// GET http://localhost:5000/api/movies?sort_type=votes&order_by=desc
+      error: err.message,
+    });
+  }
+});
 
 movieController.list = catchAsync(async (req, res, next) => {
-  const perPage = req.query.perPage || 20;
-  const pageNum = req.query.pageNum || 1;
-  const skip = pageNum * perPage;
-  const movies = await Movie.find({}).limit(perPage).skip(skip);
+  const perPage = parseInt(req.query.perPage) || 20;
+  const pageNum = parseInt(req.query.pageNum) || 1;
+  const movies = await Movie.find({})
+    .limit(perPage)
+    .skip(pageNum > 0 ? (pageNum - 1) * perPage : 0);
   const moviesTotal = await Movie.find({}).count();
 
   sendResponse(
@@ -37,8 +48,55 @@ movieController.searchByTitle = catchAsync(async (req, res, next) => {
   sendResponse(res, 201, true, { movies }, null, 'Here are your moviessss');
 });
 
-movieController.update = catchAsync(async (req, res, next) => {});
+movieController.update = catchAsync(async (req, res, next) => {
+  try {
+    const newMovie = req.body;
+    const id = req.params.id;
 
-movieController.delete = catchAsync(async (req, res, next) => {});
+    console.log(id);
+    const movie = await Movie.findByIdAndUpdate(req.params.id, newMovie, {
+      new: true,
+    });
+    movie.save();
+    if (!movie) throw Error;
+    sendResponse(
+      res,
+      201,
+      true,
+      { movie },
+      null,
+      'The movie is updated successfully'
+    );
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+
+      error: 'Movie not found!',
+    });
+  }
+});
+
+movieController.delete = catchAsync(async (req, res, next) => {
+  try {
+    const id = req.params.id;
+
+    const movie = await Movie.findByIdAndDelete(id);
+    if (!movie) throw Error;
+    sendResponse(
+      res,
+      201,
+      true,
+      { movie },
+      null,
+      'The movie is delete successfully'
+    );
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+
+      error: 'Movie not found!',
+    });
+  }
+});
 
 module.exports = movieController;

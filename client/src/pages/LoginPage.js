@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Nav } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -12,6 +12,7 @@ import {
   FormLabel,
   FormControl,
   FormText,
+  Button,
 } from './elements/LoginElements';
 
 function LoginPage() {
@@ -61,7 +62,7 @@ function LoginPage() {
           <Nav.Link as={Link} to={'/register'}>
             If you don't have a account
           </Nav.Link>
-          <Button variant="primary" type="submit" onClick={handleSubmit}>
+          <Button type="submit" onClick={handleSubmit}>
             Submit
           </Button>
         </FormRegister>

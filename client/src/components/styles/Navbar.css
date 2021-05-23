@@ -54,6 +54,10 @@ div#navbarScroll{
     height: 50px !important;
 }
 
+.dropdown-menu#movies{
+    min-width: 15rem !important;
+}
+
 .dropdown-menu.show{
     display: flex !important;
     flex-direction: column !important;
@@ -77,11 +81,11 @@ div#navbarScroll{
 }
 
 .dropdown-menu.show button:hover{
-    color: #ccc;
+    color: rgb(5, 95, 197);
 }
 
 .dropdown-menu.show a:hover{
-    color: #ccc;
+    color: rgb(5, 95, 197);
 }
 
 .navbar-collapse.show{

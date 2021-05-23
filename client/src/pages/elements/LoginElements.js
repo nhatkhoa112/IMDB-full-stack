@@ -50,3 +50,13 @@ export const FormText = styled.p`
   width: 100%;
   text-align: left;
 `;
+
+export const Button = styled.button`
+  border: none;
+  background: blue;
+  padding: 5px 10px;
+  color: white;
+  &:hover {
+    background: #331cd6;
+  }
+`;

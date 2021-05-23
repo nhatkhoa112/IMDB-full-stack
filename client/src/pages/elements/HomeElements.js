@@ -33,5 +33,4 @@ export const MoviesForm = styled.div`
 export const Pagination = styled.div`
   width: 100%;
   height: 10%;
-  background: purple;
 `;

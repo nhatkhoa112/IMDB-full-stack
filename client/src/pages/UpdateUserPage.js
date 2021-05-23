@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, Redirect } from 'react-router-dom';
 // import { Redirect } from 'react-router-dom';
@@ -12,8 +11,10 @@ import {
   FormLabel,
   FormControl,
   FormText,
+  Button,
 } from './elements/RegisterElements';
 import { authActions } from '../redux/actions';
+import { ToastContainer } from 'react-toastify';
 
 function UpdateUserPage() {
   const { id } = useParams();
@@ -44,6 +45,7 @@ function UpdateUserPage() {
   return (
     <RegisterContainer>
       <h1>Update</h1>
+      <ToastContainer />
       <Card>
         <FormRegister>
           <FormGroup controlId="formBasicName">

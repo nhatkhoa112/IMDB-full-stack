@@ -3,3 +3,7 @@ export * from './RegisterPage';
 export * from './LoginPage';
 export * from './FourOhFourPage';
 export * from './UpdateUserPage';
+export * from './MovieDetail';
+export * from './MovieDetail';
+export * from './CreateMoviePage';
+export * from './UpdateMoviePage';

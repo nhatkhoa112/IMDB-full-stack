@@ -10,6 +10,9 @@ import {
   FourOhFourPage,
   LoginPage,
   UpdateUserPage,
+  MovieDetail,
+  CreateMoviePage,
+  UpdateMoviePage,
 } from './pages';
 
 import { ProtectedRoute } from './components';
@@ -24,6 +27,18 @@ function App() {
         <Route exact path={`/register`} component={RegisterPage} />
         <ProtectedRoute exact path={`/edit/:id`} component={UpdateUserPage} />
         <ProtectedRoute exact path={'/'} component={HomePage} />
+        <ProtectedRoute
+          exact
+          path={`/movie/:id/detail`}
+          component={MovieDetail}
+        />
+        <ProtectedRoute exact path={`/create`} component={CreateMoviePage} />
+        <ProtectedRoute
+          exact
+          path={`/movie/:id/edit`}
+          component={UpdateMoviePage}
+        />
+
         <Route path={`/*`} component={FourOhFourPage} />
       </Switch>
     </div>
