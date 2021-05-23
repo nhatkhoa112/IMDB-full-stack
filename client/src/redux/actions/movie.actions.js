@@ -2,7 +2,7 @@ import * as types from '../constants/movie.constants';
 import { toast } from 'react-toastify';
 import api from '../api';
 
-const getAll = (pageNum, perPage, query) => async (dispatch) => {
+const getAll = (pageNum, perPage, query, sort) => async (dispatch) => {
   try {
     dispatch({ type: types.FETCH_START });
     let data = { data: {} };
@@ -12,10 +12,17 @@ const getAll = (pageNum, perPage, query) => async (dispatch) => {
       );
       dispatch({ type: types.FETCH_SUCCESS, payload: data.data });
     } else {
-      data.data = await api.get(
-        `/movies?pageNum=${pageNum}&perPage=${perPage}`
-      );
-      dispatch({ type: types.FETCH_SUCCESS, payload: data.data });
+      if (sort) {
+        data.data = await api.get(
+          `/movies?pageNum=${pageNum}&perPage=${perPage}&sort=${sort}`
+        );
+        dispatch({ type: types.FETCH_SUCCESS, payload: data.data });
+      } else {
+        data.data = await api.get(
+          `/movies?pageNum=${pageNum}&perPage=${perPage}`
+        );
+        dispatch({ type: types.FETCH_SUCCESS, payload: data.data });
+      }
     }
   } catch (error) {
     dispatch({ type: types.FETCH_FAILURE });

@@ -17,6 +17,12 @@ const movieReducer = (state = initialState, action) => {
       return { ...state, loading: false, movies: payload.data };
     case types.FETCH_FAILURE:
       return { ...state, loading: false };
+    case types.FETCH_AND_SORT_START:
+      return { ...state, loading: true };
+    case types.FETCH_AND_SORT_SUCCESS:
+      return { ...state, loading: false, movies: payload.data };
+    case types.FETCH_AND_SORT_FAILURE:
+      return { ...state, loading: false };
 
     case types.CREATE_MOVIE_START:
       return { ...state, loading: true };

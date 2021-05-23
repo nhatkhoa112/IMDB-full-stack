@@ -41,8 +41,6 @@ const NavigationBar = ({ query, setQuery }) => {
                 </Dropdown.Toggle>
                 <Dropdown.Menu id="movies">
                   <Link to={`/create`}>Create new movie</Link>
-                  <button>Sort movies on avg_votes</button>
-                  <button>Sort movies on votes</button>
                 </Dropdown.Menu>
               </Dropdown>
             ) : (

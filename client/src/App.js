@@ -19,6 +19,8 @@ import { ProtectedRoute } from './components';
 
 function App() {
   const [query, setQuery] = useState('');
+  // const [sort, setSort] = useState('');
+
   return (
     <div className="App">
       <Navbar query={query} setQuery={setQuery} />

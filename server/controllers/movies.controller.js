@@ -26,6 +26,7 @@ movieController.create = catchAsync(async (req, res, next) => {
 movieController.list = catchAsync(async (req, res, next) => {
   const perPage = parseInt(req.query.perPage) || 20;
   const pageNum = parseInt(req.query.pageNum) || 1;
+  const sort = req.query.sort;
   const replace = req.query.title;
   const re = new RegExp(replace, 'i');
   let movies;
@@ -37,10 +38,27 @@ movieController.list = catchAsync(async (req, res, next) => {
     moviesTotal = await Movie.find({}).count();
     console.log(movies);
   } else {
-    movies = await Movie.find({})
-      .limit(perPage)
-      .skip(pageNum > 0 ? (pageNum - 1) * perPage : 0);
-    moviesTotal = await Movie.find({}).count();
+    if (sort) {
+      if (sort === 'avg_vote') {
+        movies = await Movie.find({})
+          .sort({ avg_vote: -1 })
+          .limit(perPage)
+          .skip(pageNum > 0 ? (pageNum - 1) * perPage : 0);
+        moviesTotal = await Movie.find({}).count();
+      }
+      if (sort === 'votes') {
+        movies = await Movie.find({})
+          .sort({ votes: -1 })
+          .limit(perPage)
+          .skip(pageNum > 0 ? (pageNum - 1) * perPage : 0);
+        moviesTotal = await Movie.find({}).count();
+      }
+    } else {
+      movies = await Movie.find({})
+        .limit(perPage)
+        .skip(pageNum > 0 ? (pageNum - 1) * perPage : 0);
+      moviesTotal = await Movie.find({}).count();
+    }
   }
   sendResponse(
     res,
