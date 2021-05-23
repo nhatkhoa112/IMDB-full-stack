@@ -11,7 +11,6 @@ const register = (user) => async (dispatch) => {
   } catch (error) {
     dispatch({ type: types.REGISTER_FAILURE });
     console.log({ error });
-    toast.danger(error);
   }
 };
 
@@ -24,7 +23,6 @@ const login = (user) => async (dispatch) => {
   } catch (error) {
     dispatch({ type: types.LOGIN_FAILURE });
     console.log({ error });
-    toast.danger(error);
   }
 };
 
@@ -37,7 +35,6 @@ const update = (id, user) => async (dispatch) => {
   } catch (error) {
     dispatch({ type: types.UPDATE_FAILURE });
     console.log({ error });
-    toast.danger(error);
   }
 };
 

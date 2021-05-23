@@ -11,6 +11,7 @@ import {
   MovieButtonDelete,
   MovieButtonEdit,
   Image,
+  MovieVoteInfo,
 } from './styles/MovieCardElements';
 
 const MovieCard = ({ movie }) => {
@@ -38,6 +39,20 @@ const MovieCard = ({ movie }) => {
       <MovieInfo>
         <MovieTitle>{movie.title}</MovieTitle>
         <MovieDescription>{movie.description}</MovieDescription>
+        <MovieVoteInfo>
+          <div className="d-flex align-items-center">
+            <strong>
+              <u>Avg vote</u>
+            </strong>
+            <div style={{ marginLeft: '5px' }}>{movie.avg_vote}</div>
+          </div>
+          <div className="d-flex align-items-center">
+            <strong>
+              <u>Votes</u>
+            </strong>
+            <div style={{ marginLeft: '5px' }}>{movie.votes}</div>
+          </div>
+        </MovieVoteInfo>
       </MovieInfo>
     </Container>
   );

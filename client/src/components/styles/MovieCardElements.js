@@ -90,3 +90,10 @@ export const Image = styled.div`
   height: 100%;
   z-index: 2;
 `;
+
+export const MovieVoteInfo = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 20px;
+`;

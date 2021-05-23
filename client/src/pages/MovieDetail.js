@@ -21,10 +21,10 @@ import { movieActions } from '../redux/actions';
 import moment from 'moment';
 
 export function MovieDetail() {
-  const movies = useSelector((state) => state.movie.movies);
+  const movies = useSelector((state) => state.movie.movies.data?.movies);
   //   const loading = useSelector((state) => state.movie.loading);
   const { id } = useParams();
-  const movie = movies.movies?.find((m) => m._id === id);
+  const movie = movies?.find((m) => m._id === id);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(movieActions.getAll());

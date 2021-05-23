@@ -2,17 +2,24 @@ import * as types from '../constants/movie.constants';
 import { toast } from 'react-toastify';
 import api from '../api';
 
-const getAll = (pageNum, perPage) => async (dispatch) => {
+const getAll = (pageNum, perPage, query) => async (dispatch) => {
   try {
     dispatch({ type: types.FETCH_START });
-    const { data } = await api.get(
-      `/movies?pageNum=${pageNum}&perPage=${perPage}`
-    );
-    dispatch({ type: types.FETCH_SUCCESS, payload: data });
+    let data = { data: {} };
+    if (query) {
+      data.data = await api.get(
+        `/movies?pageNum=${pageNum}&perPage=${perPage}&title=${query}`
+      );
+      dispatch({ type: types.FETCH_SUCCESS, payload: data.data });
+    } else {
+      data.data = await api.get(
+        `/movies?pageNum=${pageNum}&perPage=${perPage}`
+      );
+      dispatch({ type: types.FETCH_SUCCESS, payload: data.data });
+    }
   } catch (error) {
     dispatch({ type: types.FETCH_FAILURE });
     console.log({ error });
-    toast.danger(error);
   }
 };
 
@@ -25,8 +32,6 @@ const CreateMovie = (movie) => async (dispatch) => {
   } catch (error) {
     dispatch({ type: types.CREATE_MOVIE_FAILURE });
     toast.danger(error);
-
-    console.log({ error });
   }
 };
 
@@ -38,7 +43,6 @@ const update = (movie) => async (dispatch) => {
     dispatch({ type: types.UPDATE_MOVIE_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: types.UPDATE_MOVIE_FAILURE });
-    console.log({ error });
   }
 };
 

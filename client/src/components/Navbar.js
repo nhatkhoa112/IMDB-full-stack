@@ -11,14 +11,20 @@ import {
 } from 'react-bootstrap';
 import './styles/Navbar.css';
 import { authActions } from '../redux/actions';
+import { movieActions } from '../redux/actions';
 
 const NavigationBar = ({ query, setQuery }) => {
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const onSubmit = (e) => {
+    e.preventDefault();
+    dispatch(movieActions.getAll(1, 20, query));
+  };
   const onChange = (e) => {
     e.preventDefault();
     setQuery(e.target.value);
   };
-  const user = useSelector((state) => state.user);
-  const dispatch = useDispatch();
+
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
@@ -27,7 +33,7 @@ const NavigationBar = ({ query, setQuery }) => {
         </Nav.Link>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
-          <Form className="d-flex">
+          <Form className="d-flex" onSubmit={onSubmit}>
             {user.id ? (
               <Dropdown>
                 <Dropdown.Toggle id="dropdown-basic2">

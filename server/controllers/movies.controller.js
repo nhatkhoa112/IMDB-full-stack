@@ -26,11 +26,22 @@ movieController.create = catchAsync(async (req, res, next) => {
 movieController.list = catchAsync(async (req, res, next) => {
   const perPage = parseInt(req.query.perPage) || 20;
   const pageNum = parseInt(req.query.pageNum) || 1;
-  const movies = await Movie.find({})
-    .limit(perPage)
-    .skip(pageNum > 0 ? (pageNum - 1) * perPage : 0);
-  const moviesTotal = await Movie.find({}).count();
-
+  const replace = req.query.title;
+  const re = new RegExp(replace, 'i');
+  let movies;
+  let moviesTotal;
+  if (replace) {
+    movies = await Movie.find({ title: { $regex: re } })
+      .limit(perPage)
+      .skip(pageNum > 0 ? (pageNum - 1) * perPage : 0);
+    moviesTotal = await Movie.find({}).count();
+    console.log(movies);
+  } else {
+    movies = await Movie.find({})
+      .limit(perPage)
+      .skip(pageNum > 0 ? (pageNum - 1) * perPage : 0);
+    moviesTotal = await Movie.find({}).count();
+  }
   sendResponse(
     res,
     201,

@@ -33,20 +33,24 @@ export const UpdateMoviePage = () => {
   });
 
   //   const movieCreated = useSelector((state) => state.movie.movieCreated.movie);
-  const movies = useSelector((state) => state.movie.movies);
-  //   const loading = useSelector((state) => state.movie.loading);
+  const movies = useSelector((state) => state.movie.movies.data?.movies);
+  console.log(movies);
   const { id } = useParams();
-  const currentMovie = movies.movies?.find((m) => m._id === id);
+  const currentMovie = movies?.find((m) => m._id === id);
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(movieActions.update(movie));
   };
 
+  console.log(currentMovie);
   useEffect(() => {
-    dispatch(movieActions.getAll());
-    if (currentMovie?._id) setMovie(currentMovie);
+    dispatch(movieActions.getAll(1, 20));
   }, [dispatch]);
+
+  useEffect(() => {
+    if (currentMovie?._id) setMovie(currentMovie);
+  }, [currentMovie]);
 
   return (
     <>
