@@ -38,7 +38,6 @@ const CreateMovie = (movie) => async (dispatch) => {
     dispatch({ type: types.CREATE_MOVIE_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: types.CREATE_MOVIE_FAILURE });
-    toast.danger(error);
   }
 };
 

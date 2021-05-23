@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Redirect } from 'react-router-dom';
 import {
   Container,
@@ -14,16 +14,29 @@ import {
   MovieDirector,
   MovieGenres,
   Button,
+  ReviewForm,
   LinkS,
+  ReviewInputForm,
+  ReviewsList,
+  CommentInput,
+  CommentSubmit,
+  ReviewsListForm,
 } from './elements/MovieDetailElements';
 import { useSelector, useDispatch } from 'react-redux';
 import { movieActions } from '../redux/actions';
+import { reviewActions } from '../redux/actions';
 import moment from 'moment';
 
 export function MovieDetail() {
   const movies = useSelector((state) => state.movie.movies.data?.movies);
-  //   const loading = useSelector((state) => state.movie.loading);
   const { id } = useParams();
+  const user = useSelector((state) => state.user);
+  const [review, setReview] = useState({
+    body: '',
+    movieId: id,
+    userId: user.id,
+  });
+  //   const loading = useSelector((state) => state.movie.loading);
   const movie = movies?.find((m) => m._id === id);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -33,6 +46,12 @@ export function MovieDetail() {
   if (!movie) {
     return <Redirect to="/" />;
   }
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    if (review.body) {
+      dispatch(reviewActions.create(review));
+    }
+  };
 
   return (
     <Container>
@@ -192,6 +211,23 @@ export function MovieDetail() {
           </MovieGenres>
         </MovieInfo>
       </MovieCard>
+      <ReviewForm>
+        <ReviewsList>
+          <h4 style={{ textAlign: 'center', color: 'white', height: '10%' }}>
+            Reviews
+          </h4>
+          <ReviewsListForm>{}</ReviewsListForm>
+        </ReviewsList>
+        <ReviewInputForm>
+          <CommentInput
+            value={review.body}
+            onChange={(e) => setReview({ ...review, body: e.target.value })}
+            type="text"
+            placeholder="Enter your review"
+          />
+          <CommentSubmit onClick={handleOnSubmit}>Enter</CommentSubmit>
+        </ReviewInputForm>
+      </ReviewForm>
     </Container>
   );
 }

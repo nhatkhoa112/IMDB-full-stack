@@ -8,6 +8,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   padding: 60px 0;
+  flex-direction: column;
 `;
 
 export const MovieCard = styled.div`
@@ -148,4 +149,57 @@ export const LinkS = styled(Link)`
     opacity: 0.7;
     color: black;
   }
+`;
+
+export const ReviewForm = styled.div`
+  width: 90%;
+  height: 350px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 25, 125, 0.7);
+`;
+
+export const ReviewsList = styled.div`
+  flex: 7;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+`;
+
+export const ReviewInputForm = styled.div`
+  width: 100%;
+  background: white;
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const CommentInput = styled.input`
+  flex: 8;
+  height: 100%;
+  outline: none;
+  padding: 0 20px;
+`;
+
+export const CommentSubmit = styled.button`
+  flex: 2;
+  height: 100%;
+  color: black;
+  outline: none;
+  border: none;
+  transition: all 0.5s ease-in-out;
+  background: rgba(24, 198, 23, 0.3);
+  &:hover {
+    background: rgba(24, 198, 23, 0.7);
+    color: white;
+  }
+`;
+
+export const ReviewsListForm = styled.div`
+  width: 100%;
+  height: 90%;
+  border: 2px solid tomato;
 `;

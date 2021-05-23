@@ -27,6 +27,7 @@ const movieReducer = (state = initialState, action) => {
     case types.CREATE_MOVIE_START:
       return { ...state, loading: true };
     case types.CREATE_MOVIE_SUCCESS:
+      state.unshift(payload.data);
       return { ...state, loading: false, movieCreated: payload.data };
     case types.CREATE_MOVIE_FAILURE:
       return { ...state, loading: false };

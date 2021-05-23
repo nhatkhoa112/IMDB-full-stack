@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ToastContainer } from 'react-toastify';
 import {
   Container,
   Card,
@@ -30,8 +31,6 @@ export const CreateMoviePage = () => {
     reviews_from_critics: undefined,
   });
 
-  const movieCreated = useSelector((state) => state.movie.movieCreated.movie);
-
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -39,11 +38,10 @@ export const CreateMoviePage = () => {
     dispatch(movieActions.CreateMovie(movie));
   };
 
-  if (movieCreated?._id) return <h1>The movie is created successfully</h1>;
-
   return (
     <>
       <h1>Create new Movie</h1>
+      <ToastContainer />
       <Container>
         <Card>
           <FormRegister>

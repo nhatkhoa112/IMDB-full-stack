@@ -22,7 +22,7 @@ function HomePage() {
   const [sort, setSort] = useState('');
   const totalPage = Math.ceil(moviesTotal / perPage);
   useEffect(() => {
-    dispatch(movieActions.getAll(pageNum, perPage, '', sort));
+    dispatch(movieActions.getAll(pageNum, perPage, '', ''));
   }, [dispatch, pageNum, perPage]);
 
   return (
@@ -46,6 +46,14 @@ function HomePage() {
             }}
           >
             Top movie of votes
+          </button>
+          <button
+            onClick={() => {
+              setSort('');
+              dispatch(movieActions.getAll(pageNum, perPage, '', sort));
+            }}
+          >
+            Clear
           </button>
         </ButtonForm>
         <MoviesForm>
