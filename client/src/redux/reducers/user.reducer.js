@@ -29,6 +29,8 @@ const userReducer = (state = initialState, action) => {
         id: payload.data._id,
         email: payload.data.email,
         name: payload.data.name || '',
+        isAuthenticated: true,
+        avatarUrl: payload.data.avatarUrl,
         isRedirect: true,
       };
     case types.REGISTER_FAILURE:
@@ -43,6 +45,8 @@ const userReducer = (state = initialState, action) => {
         id: payload.data._id,
         name: payload.data.name,
         email: payload.data.email,
+        avatarUrl: payload.data.avatarUrl,
+        isAuthenticated: true,
         isRedirect: true,
       };
     case types.LOGIN_FAILURE:

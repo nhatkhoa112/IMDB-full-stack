@@ -40,7 +40,9 @@ const NavigationBar = ({ query, setQuery }) => {
                   Movie actions
                 </Dropdown.Toggle>
                 <Dropdown.Menu id="movies">
-                  <Link to={`/create`}>Create new movie</Link>
+                  <Nav.Link as={Link} to={`/create`}>
+                    Create new movie
+                  </Nav.Link>
                 </Dropdown.Menu>
               </Dropdown>
             ) : (

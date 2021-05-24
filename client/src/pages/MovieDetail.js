@@ -60,6 +60,7 @@ export function MovieDetail() {
     e.preventDefault();
     if (review.body) {
       dispatch(reviewActions.create(review));
+      setReview({ ...review, body: '' });
     }
   };
 
@@ -274,7 +275,7 @@ export function MovieDetail() {
             })}
           </ReviewsListForm>
         </ReviewsList>
-        <ReviewInputForm>
+        <ReviewInputForm onSubmit={handleOnSubmit}>
           <CommentInput
             value={review.body}
             onChange={(e) => setReview({ ...review, body: e.target.value })}

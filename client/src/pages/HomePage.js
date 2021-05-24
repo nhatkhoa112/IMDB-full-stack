@@ -21,8 +21,9 @@ function HomePage() {
   const [perPage, setPerPage] = useState(20);
   const [sort, setSort] = useState('');
   const totalPage = Math.ceil(moviesTotal / perPage);
+
   useEffect(() => {
-    dispatch(movieActions.getAll(pageNum, perPage, '', ''));
+    dispatch(movieActions.getAll(pageNum, perPage, '', sort));
   }, [dispatch, pageNum, perPage]);
 
   return (
@@ -67,6 +68,7 @@ function HomePage() {
             setPageNum={setPageNum}
             totalPage={totalPage}
             perPage={perPage}
+            sort={sort}
           />
         </Pagination>
       </HomeContainer>

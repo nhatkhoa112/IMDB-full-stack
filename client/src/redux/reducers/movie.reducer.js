@@ -27,8 +27,11 @@ const movieReducer = (state = initialState, action) => {
     case types.CREATE_MOVIE_START:
       return { ...state, loading: true };
     case types.CREATE_MOVIE_SUCCESS:
-      state.unshift(payload.data);
-      return { ...state, loading: false, movieCreated: payload.data };
+      return {
+        ...state,
+        loading: false,
+        movies: [{ ...payload.data }, ...state.movies],
+      };
     case types.CREATE_MOVIE_FAILURE:
       return { ...state, loading: false };
 
@@ -41,15 +44,15 @@ const movieReducer = (state = initialState, action) => {
     case types.DELETE_MOVIE_START:
       return { ...state, loading: true };
     case types.DELETE_MOVIE_SUCCESS:
-      console.log(payload.data.movie);
-      state.movies.movies = state.movies.movies.filter(
+      console.log(state.movies.data.movies);
+      state.movies.data.movies = state.movies.data.movies.filter(
         (m) => m._id !== payload.data.movie._id
       );
 
       return {
         ...state,
         loading: false,
-        movies: { ...state.movies, movies: state.movies.movies },
+        movies: { ...state.movies, movies: state.movies.data.movies },
       };
     case types.DELETE_MOVIE_FAILURE:
       return { ...state, loading: false };

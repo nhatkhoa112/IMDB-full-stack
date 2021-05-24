@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 import {
   Card,
@@ -17,6 +18,7 @@ import { authActions } from '../redux/actions';
 function RegisterPage() {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.user);
+  console.log(currentUser);
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -27,7 +29,6 @@ function RegisterPage() {
     e.preventDefault();
     dispatch(authActions.register(user));
   };
-
   if (currentUser.isRedirect) {
     return <Redirect to="/" />;
   }
@@ -35,6 +36,7 @@ function RegisterPage() {
   return (
     <RegisterContainer>
       <h1>Register</h1>
+      <ToastContainer />
       <Card>
         <FormRegister>
           <FormGroup controlId="formBasicName">

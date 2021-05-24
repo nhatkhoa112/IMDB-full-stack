@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { authActions } from '../redux/actions';
+import { ToastContainer } from 'react-toastify';
+
 import {
   Card,
   RegisterContainer,
@@ -34,6 +36,7 @@ function LoginPage() {
 
   return (
     <RegisterContainer>
+      <ToastContainer />
       <h1>Login</h1>
       <Card>
         <FormRegister>

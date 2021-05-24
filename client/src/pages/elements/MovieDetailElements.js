@@ -168,7 +168,7 @@ export const ReviewsList = styled.div`
   padding: 10px;
 `;
 
-export const ReviewInputForm = styled.div`
+export const ReviewInputForm = styled.form`
   width: 100%;
   background: white;
   flex: 1;

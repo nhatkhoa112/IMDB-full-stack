@@ -17,11 +17,14 @@ const getAll = (pageNum, perPage, query, sort) => async (dispatch) => {
           `/movies?pageNum=${pageNum}&perPage=${perPage}&sort=${sort}`
         );
         dispatch({ type: types.FETCH_SUCCESS, payload: data.data });
-      } else {
+        // console.log('hello');
+      }
+      if (!sort) {
         data.data = await api.get(
           `/movies?pageNum=${pageNum}&perPage=${perPage}`
         );
         dispatch({ type: types.FETCH_SUCCESS, payload: data.data });
+        // console.log('bye');
       }
     }
   } catch (error) {

@@ -3,30 +3,37 @@ import { Pagination } from 'react-bootstrap';
 import { movieActions } from '../redux/actions';
 import { useDispatch } from 'react-redux';
 
-const PaginationBar = ({ pageNum, setPageNum, totalPage, perPage }) => {
+const PaginationBar = ({ pageNum, setPageNum, totalPage, perPage, sort }) => {
   const dispatch = useDispatch();
 
-  const handleClickOnFirst = () => {
+  console.log(sort);
+
+  const handleClickOnFirst = (e) => {
+    e.preventDefault();
     setPageNum(1);
-    dispatch(movieActions.getAll(pageNum, perPage));
+    dispatch(movieActions.getAll(pageNum, perPage, '', sort));
   };
-  const handleClickOnPrev = () => {
+  const handleClickOnPrev = (e) => {
+    e.preventDefault();
     if (pageNum > 1) setPageNum((num) => num - 1);
-    dispatch(movieActions.getAll(pageNum, perPage));
+    dispatch(movieActions.getAll(pageNum, perPage, '', sort));
   };
 
-  const handleClickOnLast = () => {
+  const handleClickOnLast = (e) => {
+    e.preventDefault();
     setPageNum(totalPage);
-    dispatch(movieActions.getAll(pageNum, perPage));
+    dispatch(movieActions.getAll(pageNum, perPage, '', sort));
   };
-  const handleClickOnNext = () => {
+  const handleClickOnNext = (e) => {
+    e.preventDefault();
     if (pageNum < totalPage) setPageNum((num) => num + 1);
-    dispatch(movieActions.getAll(pageNum, perPage));
+    dispatch(movieActions.getAll(pageNum, perPage, '', sort));
   };
 
-  const handleClickOnPage = (page) => {
+  const handleClickOnPage = (e, page) => {
+    e.preventDefault();
     setPageNum(page);
-    dispatch(movieActions.getAll(pageNum, perPage));
+    dispatch(movieActions.getAll(pageNum, perPage, '', sort));
   };
   return (
     <Pagination className="mt-3 justify-content-center">
@@ -34,7 +41,7 @@ const PaginationBar = ({ pageNum, setPageNum, totalPage, perPage }) => {
       <Pagination.Prev disabled={pageNum === 1} onClick={handleClickOnPrev} />
       <Pagination.Item
         active={pageNum === 1}
-        onClick={() => handleClickOnPage(1)}
+        onClick={(e) => handleClickOnPage(e, 1)}
       >
         {1}
       </Pagination.Item>
@@ -48,7 +55,7 @@ const PaginationBar = ({ pageNum, setPageNum, totalPage, perPage }) => {
       {totalPage > 1 && (
         <Pagination.Item
           active={pageNum === totalPage}
-          onClick={() => handleClickOnPage(totalPage)}
+          onClick={(e) => handleClickOnPage(e, totalPage)}
         >
           {totalPage}
         </Pagination.Item>

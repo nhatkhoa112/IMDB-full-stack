@@ -2,6 +2,7 @@ import * as types from '../constants/user.constants';
 import { toast } from 'react-toastify';
 import api from '../api';
 
+
 const register = (user) => async (dispatch) => {
   try {
     dispatch({ type: types.REGISTER_REQUEST });
