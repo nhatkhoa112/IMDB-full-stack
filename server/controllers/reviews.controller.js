@@ -47,7 +47,31 @@ reviewController.list = catchAsync(async (req, res, next) => {
   }
 });
 
-reviewController.update = catchAsync(async (req, res, next) => {});
+reviewController.update = catchAsync(async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const review = await Review.findByIdAndUpdate(
+      id,
+      { ...req.body },
+      { new: true }
+    );
+    if (!review) throw Error;
+    sendResponse(
+      res,
+      201,
+      true,
+      { review },
+      null,
+      'The review is updated successfully'
+    );
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+
+      error: 'Review not found!',
+    });
+  }
+});
 
 reviewController.delete = catchAsync(async (req, res, next) => {
   try {
@@ -61,7 +85,7 @@ reviewController.delete = catchAsync(async (req, res, next) => {
       true,
       { review },
       null,
-      'The review is delete successfully'
+      'The review is deleted successfully'
     );
   } catch (error) {
     res.status(400).json({

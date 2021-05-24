@@ -1,5 +1,5 @@
 import types from '../constants/review.constants';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import api from '../api';
 
 const getAll = () => async (dispatch) => {
@@ -28,8 +28,8 @@ const create = (review) => async (dispatch) => {
 const update = (id, review) => async (dispatch) => {
   try {
     dispatch({ type: types.UPDATE_REVIEW_START });
-    const { data } = api.patch(`/reviews/${id}`, review);
-    dispatch({ type: types.UPDATE_REVIEW_SUCCESS, payload: data.data });
+    const { data } = await api.patch(`/reviews/${id}`, review);
+    dispatch({ type: types.UPDATE_REVIEW_SUCCESS, payload: data });
     // toast.success('The review is updated successfully');
   } catch (error) {
     dispatch({ type: types.UPDATE_REVIEW_FAILURE });

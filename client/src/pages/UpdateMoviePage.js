@@ -10,6 +10,7 @@ import {
   FormTextField,
   FormReviewGroup,
   FormVoteGroup,
+  UpdateMovieP,
 } from './elements/UpdateMovieElements';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -34,7 +35,6 @@ export const UpdateMoviePage = () => {
 
   //   const movieCreated = useSelector((state) => state.movie.movieCreated.movie);
   const movies = useSelector((state) => state.movie.movies.data?.movies);
-  console.log(movies);
   const { id } = useParams();
   const currentMovie = movies?.find((m) => m._id === id);
   const dispatch = useDispatch();
@@ -43,7 +43,6 @@ export const UpdateMoviePage = () => {
     dispatch(movieActions.update(movie));
   };
 
-  console.log(currentMovie);
   useEffect(() => {
     dispatch(movieActions.getAll(1, 20));
   }, [dispatch]);
@@ -53,7 +52,7 @@ export const UpdateMoviePage = () => {
   }, [currentMovie]);
 
   return (
-    <>
+    <UpdateMovieP>
       <h1>Update the Movie</h1>
       <ToastContainer />
 
@@ -188,6 +187,6 @@ export const UpdateMoviePage = () => {
           </FormRegister>
         </Card>
       </Container>
-    </>
+    </UpdateMovieP>
   );
 };

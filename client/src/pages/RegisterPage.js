@@ -19,6 +19,7 @@ function RegisterPage() {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.user);
   console.log(currentUser);
+
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -29,9 +30,9 @@ function RegisterPage() {
     e.preventDefault();
     dispatch(authActions.register(user));
   };
-  if (currentUser.isRedirect) {
-    return <Redirect to="/" />;
-  }
+  // if (currentUser.isRedirect) {
+  //   return <Redirect to="/" />;
+  // }
 
   return (
     <RegisterContainer>

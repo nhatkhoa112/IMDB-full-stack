@@ -24,12 +24,11 @@ function HomePage() {
 
   useEffect(() => {
     dispatch(movieActions.getAll(pageNum, perPage, '', sort));
-  }, [dispatch, pageNum, perPage]);
+  }, [dispatch, pageNum, perPage, sort]);
 
   return (
     <>
       <ToastContainer />
-
       <HomeContainer>
         <ButtonForm>
           <button

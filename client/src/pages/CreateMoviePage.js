@@ -11,8 +11,9 @@ import {
   FormTextField,
   FormReviewGroup,
   FormVoteGroup,
+  CreateMovieP,
 } from './elements/CreateMovieElements';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { movieActions } from '../redux/actions';
 
 export const CreateMoviePage = () => {
@@ -39,7 +40,7 @@ export const CreateMoviePage = () => {
   };
 
   return (
-    <>
+    <CreateMovieP>
       <h1>Create new Movie</h1>
       <ToastContainer />
       <Container>
@@ -173,6 +174,6 @@ export const CreateMoviePage = () => {
           </FormRegister>
         </Card>
       </Container>
-    </>
+    </CreateMovieP>
   );
 };

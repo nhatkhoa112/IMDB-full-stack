@@ -30,7 +30,11 @@ const reviewReducer = (state = initialState, action) => {
     case types.UPDATE_REVIEW_START:
       return { ...state, loading: true };
     case types.UPDATE_REVIEW_SUCCESS:
-      return { ...state, loading: false };
+      let idx = state.reviews.findIndex(
+        (r) => r._id === payload.data.review._id
+      );
+      state.reviews[idx].body = payload.data.review.body;
+      return { ...state, loading: false, reviews: state.reviews };
     case types.UPDATE_REVIEW_FAILURE:
       return { ...state, loading: false };
     case types.DELETE_REVIEW_START:

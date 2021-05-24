@@ -36,7 +36,6 @@ movieController.list = catchAsync(async (req, res, next) => {
       .limit(perPage)
       .skip(pageNum > 0 ? (pageNum - 1) * perPage : 0);
     moviesTotal = await Movie.find({}).countDocuments();
-    console.log(movies);
   } else {
     if (sort) {
       if (sort === 'avg_vote') {
@@ -82,7 +81,6 @@ movieController.update = catchAsync(async (req, res, next) => {
     const newMovie = req.body;
     const id = req.params.id;
 
-    console.log(id);
     const movie = await Movie.findByIdAndUpdate(req.params.id, newMovie, {
       new: true,
     });
