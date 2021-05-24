@@ -76,7 +76,14 @@ const userReducer = (state = initialState, action) => {
     case types.SIGN_OUT:
       localStorage.removeItem('accessToken');
       localStorage.removeItem('imdbUser');
-      return state;
+      return {
+        id: '',
+        email: '',
+        name: '',
+        avatarUrl: '',
+        isAuthenticated: false,
+        isRedirect: false,
+      };
     default:
       return state;
   }
