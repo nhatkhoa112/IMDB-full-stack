@@ -35,7 +35,7 @@ movieController.list = catchAsync(async (req, res, next) => {
     movies = await Movie.find({ title: { $regex: re } })
       .limit(perPage)
       .skip(pageNum > 0 ? (pageNum - 1) * perPage : 0);
-    moviesTotal = await Movie.find({}).count();
+    moviesTotal = await Movie.find({}).countDocuments();
     console.log(movies);
   } else {
     if (sort) {
@@ -44,20 +44,20 @@ movieController.list = catchAsync(async (req, res, next) => {
           .sort({ avg_vote: -1 })
           .limit(perPage)
           .skip(pageNum > 0 ? (pageNum - 1) * perPage : 0);
-        moviesTotal = await Movie.find({}).count();
+        moviesTotal = await Movie.find({}).countDocuments();
       }
       if (sort === 'votes') {
         movies = await Movie.find({})
           .sort({ votes: -1 })
           .limit(perPage)
           .skip(pageNum > 0 ? (pageNum - 1) * perPage : 0);
-        moviesTotal = await Movie.find({}).count();
+        moviesTotal = await Movie.find({}).countDocuments();
       }
     } else {
       movies = await Movie.find({})
         .limit(perPage)
         .skip(pageNum > 0 ? (pageNum - 1) * perPage : 0);
-      moviesTotal = await Movie.find({}).count();
+      moviesTotal = await Movie.find({}).countDocuments();
     }
   }
   sendResponse(

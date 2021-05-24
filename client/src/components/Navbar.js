@@ -59,7 +59,12 @@ const NavigationBar = ({ query, setQuery }) => {
                   </div>
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <button onClick={() => dispatch(authActions.signOut())}>
+                  <button
+                    onClick={() => {
+                      dispatch(authActions.signOut());
+                      setQuery('');
+                    }}
+                  >
                     Sign out
                   </button>
                   <Link to={`/edit/${user.id}`}>Edit</Link>

@@ -10,7 +10,22 @@ const reviewSchema = Schema(
 
       trim: true,
     },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+
+      ref: 'User',
+
+      required: true,
+    },
+    movieId: {
+      type: mongoose.Schema.Types.ObjectId,
+
+      ref: 'Movie',
+
+      required: true,
+    },
   },
+
   { timestamps: true }
 );
 

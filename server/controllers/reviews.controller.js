@@ -11,13 +11,15 @@ const reviewController = {};
 reviewController.create = catchAsync(async (req, res, next) => {
   try {
     let newReview = req.body;
-
-    const review = await new Review({ body, userId, movieId });
-    
+    let review = await new Review();
+    review.body = newReview.body;
+    review.userId = mongoose.Types.ObjectId(newReview.userId);
+    review.movieId = mongoose.Types.ObjectId(newReview.movieId);
+    review._id = new mongoose.Types.ObjectId();
     review.save();
     res.status(200).json({
       success: false,
-      data: newReview,
+      data: review,
       message: 'The new review is created successfully',
     });
   } catch (error) {
@@ -47,6 +49,27 @@ reviewController.list = catchAsync(async (req, res, next) => {
 
 reviewController.update = catchAsync(async (req, res, next) => {});
 
-reviewController.delete = catchAsync(async (req, res, next) => {});
+reviewController.delete = catchAsync(async (req, res, next) => {
+  try {
+    const id = req.params.id;
+
+    const review = await Review.findByIdAndDelete(id);
+    if (!review) throw Error;
+    sendResponse(
+      res,
+      201,
+      true,
+      { review },
+      null,
+      'The review is delete successfully'
+    );
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+
+      error: 'Review not found!',
+    });
+  }
+});
 
 module.exports = reviewController;
