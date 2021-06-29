@@ -33,6 +33,7 @@ export function MovieDetail() {
   const reviews = useSelector((state) => state.review.reviews);
   const { id } = useParams();
   const user = useSelector((state) => state.user);
+        const [reviewed, setReviewed] = useState(false)
   const [review, setReview] = useState({
     body: '',
     movieId: id,
@@ -230,8 +231,10 @@ export function MovieDetail() {
                 <ReviewItems
                   m={m}
                   user={user}
-                  review={review}
-                  setReview={setReview}
+                  reviewed={reviewed}
+                  setReviewed={setReviewed}
+                  // review={review}
+                  // setReview={setReview}
                 />
               );
             })}

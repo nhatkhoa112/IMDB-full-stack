@@ -11,29 +11,36 @@ const PaginationBar = ({ pageNum, setPageNum, totalPage, perPage, sort }) => {
   const handleClickOnFirst = (e) => {
     e.preventDefault();
     setPageNum(1);
-    dispatch(movieActions.getAll(pageNum, perPage, '', sort));
+    let newPage = pageNum;
+    newPage = 1;
+    dispatch(movieActions.getAll(newPage, perPage, '', sort));
   };
   const handleClickOnPrev = (e) => {
     e.preventDefault();
+    let newPage = pageNum;
+    newPage = pageNum - 1;
     if (pageNum > 1) setPageNum((num) => num - 1);
-    dispatch(movieActions.getAll(pageNum, perPage, '', sort));
+    dispatch(movieActions.getAll(newPage, perPage, '', sort));
   };
 
   const handleClickOnLast = (e) => {
     e.preventDefault();
     setPageNum(totalPage);
-    dispatch(movieActions.getAll(pageNum, perPage, '', sort));
+    let newPage = totalPage;
+    dispatch(movieActions.getAll(newPage, perPage, '', sort));
   };
   const handleClickOnNext = (e) => {
     e.preventDefault();
+    let newPage = pageNum + 1;
     if (pageNum < totalPage) setPageNum((num) => num + 1);
-    dispatch(movieActions.getAll(pageNum, perPage, '', sort));
+    dispatch(movieActions.getAll(newPage, perPage, '', sort));
   };
 
   const handleClickOnPage = (e, page) => {
     e.preventDefault();
     setPageNum(page);
-    dispatch(movieActions.getAll(pageNum, perPage, '', sort));
+    let newPage = page;
+    dispatch(movieActions.getAll(newPage, perPage, '', sort));
   };
   return (
     <Pagination className="mt-3 justify-content-center">

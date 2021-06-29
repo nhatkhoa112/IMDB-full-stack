@@ -12,7 +12,7 @@ import { reviewActions } from '../redux/actions';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 
-const ReviewItems = ({ m, user }) => {
+const ReviewItems = ({ m, user, reviewed, setReviewed }) => {
   const dispatch = useDispatch();
   const [review, setReview] = useState({
     body: '',
@@ -25,10 +25,8 @@ const ReviewItems = ({ m, user }) => {
     dispatch(reviewActions.update(m._id, review));
     setReview({ body: selectedReview.body });
     setIsEdit(!isEdit);
-    console.log(selectedReview);
+    setReviewed(!reviewed);
   };
-
-  console.log(selectedReview);
 
   const handleClickEdit = (e) => {
     e.preventDefault();

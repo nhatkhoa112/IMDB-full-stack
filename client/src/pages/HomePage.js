@@ -34,7 +34,8 @@ function HomePage() {
           <button
             onClick={() => {
               setSort('avg_vote');
-              dispatch(movieActions.getAll(pageNum, perPage, '', sort));
+              let newSort = 'avg-vote';
+              dispatch(movieActions.getAll(pageNum, perPage, '', newSort));
             }}
           >
             Top movie of avg vote
@@ -42,7 +43,8 @@ function HomePage() {
           <button
             onClick={() => {
               setSort('votes');
-              dispatch(movieActions.getAll(pageNum, perPage, '', sort));
+              let newSort = 'avg-votes';
+              dispatch(movieActions.getAll(pageNum, perPage, '', newSort));
             }}
           >
             Top movie of votes
@@ -50,7 +52,9 @@ function HomePage() {
           <button
             onClick={() => {
               setSort('');
-              dispatch(movieActions.getAll(pageNum, perPage, '', sort));
+              setSort('');
+              let newSort = '';
+              dispatch(movieActions.getAll(pageNum, perPage, '', newSort));
             }}
           >
             Clear
