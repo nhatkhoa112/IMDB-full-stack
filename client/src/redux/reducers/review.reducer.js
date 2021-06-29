@@ -56,4 +56,4 @@ const reviewReducer = (state = initialState, action) => {
   }
 };
 
-module.exports = reviewReducer;
+export default reviewReducer;
