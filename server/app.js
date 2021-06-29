@@ -1,25 +1,27 @@
-const express = require("express");
-const path = require("path");
-const cookieParser = require("cookie-parser");
-const logger = require("morgan");
-const cors = require("cors");
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const cors = require('cors');
 
-require("dotenv").config();
+require('dotenv').config();
 
 const app = express();
 
-app.use(logger("dev"));
+app.use(logger('dev'));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
-const utilsHelper = require("./helpers/utils.helper");
+app.use(express.static(path.join(__dirname, 'public')));
+const utilsHelper = require('./helpers/utils.helper');
 
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+
+const MONGO_URL = process.env.MONGO_URL;
 
 mongoose
-  .connect("mongodb://localhost/IMDB", {
+  .connect(MONGO_URL, {
     useCreateIndex: true,
     useNewUrlParser: true,
     useFindAndModify: false,
@@ -28,21 +30,21 @@ mongoose
   .then((e) => {
     console.log(`MongoDB database connection established successfully!`);
   })
-  .catch((err) => console.error("Could not connect to database!", err));
+  .catch((err) => console.error('Could not connect to database!', err));
 
-const indexRouter = require("./api");
-app.use("/api", indexRouter);
+const indexRouter = require('./api');
+app.use('/api', indexRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  const err = new Error("Not Found");
+  const err = new Error('Not Found');
   err.statusCode = 404;
   next(err);
 });
 
 /* Initialize Error Handling */
 app.use((err, req, res, next) => {
-  console.log("ERROR", err);
+  console.log('ERROR', err);
   if (err.isOperational) {
     return utilsHelper.sendResponse(
       res,
@@ -59,7 +61,7 @@ app.use((err, req, res, next) => {
       false,
       null,
       { message: err.message },
-      "Internal Server Error"
+      'Internal Server Error'
     );
   }
 });
